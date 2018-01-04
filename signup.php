@@ -12,7 +12,16 @@ $pdo = new PDO('sqlite:databas.sql');
     $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
     $uid = filter_var($_POST['uid'], FILTER_SANITIZE_STRING);
     $pwd = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
+
+    $statement = $pdo->prepare('insert into user (user_firstname, user_lastname, user_email, user_id, user_password) values (:user_firstname, :user_lastname, :user_email, :user_id, :user_password)');
+
+  if (!$statement_insert) {
+    die(var_dump($pdo->errorInfo()));
   }
+
+  $statement->bindParam(':user_firstname, :user_lastname, :user_email, :user_id', $first, $last, $email, $uid, PDO::PARAM_STR);
+  $statement->bondParam(':user_password', $pwd, PDO::PARAM_STR);
+  $statement->execute();
 
 ?>
 
