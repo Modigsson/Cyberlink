@@ -17,7 +17,7 @@
           <form action="POST">
             <input type="text" name="user_username" placeholder="Username/email">
             <input type="password" name="user_password" placeholder="Password">
-            <button type="submit" name="submit">Login</button>
+            <button type="submit" name="login">Login</button>
           </form>
             <a href="signup.php">Sign Up</a>
         </div>

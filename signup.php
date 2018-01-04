@@ -29,6 +29,8 @@ $pdo = new PDO('sqlite:includes/databas.sql');
     } else {
       echo "Account could not be created.";
     }
+
+    header('Location: /index.php');
 }
 
 ?>
