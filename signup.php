@@ -10,14 +10,17 @@ $pdo = new PDO('sqlite:includes/databas.sql');
     $first = filter_var($_POST['first'], FILTER_SANITIZE_STRING);
     $last = filter_var($_POST['last'], FILTER_SANITIZE_STRING);
     $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
+    $username = filter_var($_POST['uid'], FILTER_SANITIZE_STRING);
     $pwd = password_hash($_POST['pwd'], PASSWORD_DEFAULT);
 
-    $statement = $pdo->prepare('insert into users (user_firstname, user_lastname, user_email, user_password) values (:user_firstname, :user_lastname, :user_email, :user_password)');
+    $statement = $pdo->prepare('INSERT INTO users (user_firstname, user_lastname, user_email, user_username, user_password)
+    VALUES (:user_firstname, :user_lastname, :user_email, :user_username, :user_password)');
 
     $result = $statement->execute(array(
       ':user_firstname' => $first,
       ':user_lastname' => $last,
       ':user_email' => $email,
+      ':user_username' => $username,
       ':user_password' => $pwd
     ));
 
@@ -36,8 +39,8 @@ $pdo = new PDO('sqlite:includes/databas.sql');
     <form class="signupForm" action="signup.php" method="POST">
       <input type="text" name="first" placeholder="Firstname" autocomplete="on">
       <input type="text" name="last" placeholder="Lastname" autocomplete="on">
-      <input type="text" name="email" placeholder="E-mail" autocomplete="off">
-      <input type="text" name="uid" placeholder="Username" autocomplete="off">
+      <input type="text" name="email" placeholder="E-mail" autocomplete="on">
+      <input type="text" name="uid" placeholder="Username" autocomplete="on">
       <input type="password" name="pwd" placeholder="Password" autocomplete="off">
       <button type="submit" name="submit">Sign Up</button>
     </form>
@@ -46,5 +49,5 @@ $pdo = new PDO('sqlite:includes/databas.sql');
 
 
 <?php
-include_once 'footer.php';
+include_once 'includes/footer.php';
 ?>
