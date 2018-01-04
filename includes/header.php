@@ -14,7 +14,7 @@
         <li><a href="index.php">Home</a></li>
       </ul>
         <div class="navLogin">
-          <form action="GET">
+          <form action="POST">
             <input type="text" name="user_username" placeholder="Username/email">
             <input type="password" name="user_password" placeholder="Password">
             <button type="submit" name="submit">Login</button>
