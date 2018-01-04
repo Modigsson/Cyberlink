@@ -14,16 +14,19 @@ $pdo = new PDO('sqlite:databas.sql');
 
     $statement = $pdo->prepare('insert into user (user_firstname, user_lastname, user_email, user_password) values (:user_firstname, :user_lastname, :user_email, :user_password)');
 
-  if (!$statement) {
-    die(var_dump($pdo->errorInfo()));
-  }
+    $result = $statement->execute(array(
+      ':user_firstname' => $first,
+      ':user_lastname' => $last,
+      ':user_email' => $email,
+      ':user_password' => $pwd
+    ));
 
-  $statement->execute(array(
-    ':user_firstname' => $first,
-    ':user_lastname' => $last,
-    ':user_email' => $email,
-    ':user_password' => $pwd
-  ));
+    if ($result) {
+      echo "Your account has been added successfully!";
+    } else {
+      "Account could not be created.";
+    }
+}
 
 ?>
 
