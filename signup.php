@@ -18,9 +18,12 @@ $pdo = new PDO('sqlite:databas.sql');
     die(var_dump($pdo->errorInfo()));
   }
 
-  $statement->bindParam(':user_firstname, :user_lastname, :user_email', $first, $last, $email, PDO::PARAM_STR);
-  $statement->bondParam(':user_password', $pwd, PDO::PARAM_STR);
-  $statement->execute();
+  $statement->execute(array(
+    ':user_firstname' => $first,
+    ':user_lastname' => $last,
+    ':user_email' => $email,
+    ':user_password' => $pwd
+  ));
 
 ?>
 
