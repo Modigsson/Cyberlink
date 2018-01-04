@@ -1,0 +1,143 @@
+body {
+  background-color: #CCC;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*CSS for Homepage*/
+
+.headWrapper {
+  margin: 0 auto;
+  width: 1000px;
+}
+
+.headWrapper {
+  width: 100%;
+  height: 60px;
+  background-color: rgb(52, 152, 219);
+}
+
+.headWrapper ul {
+  float: left;
+}
+
+.headWrapper ul li {
+  float: left;
+  list-style: none;
+}
+
+.headWrapper ul a {
+  font-family: arial;
+  font-size: 16px;
+  color: rgb(253, 254, 254);
+  line-height: 63px;
+}
+
+.navLogin {
+  float: right;
+}
+
+.navLogin form {
+  float: left;
+  padding-top: 15px;
+}
+
+.navLogin form input {
+  float: left;
+  width: 140px;
+  height: 30px;
+  padding: 0px 10px;
+  margin-right: 10px;
+  border: none;
+  background-color: rgb(253, 254,254);
+  font-family: arial;
+  font-size: 14px;
+  color: #111;
+  line-height: 30px;
+}
+
+.navLogin form button {
+  float: left;
+  width: 60px;
+  height: 30px;
+  padding: 0px 10px;
+  margin-right: 10px;
+  border: none;
+  background-color: rgb(52, 152, 219);
+  font-family: arial;
+  font-size: 14px;
+  color: rgb(253, 254, 254);
+  cursor: pointer;
+}
+
+.navLogin form button:hover {
+  background-color: #CCC;
+}
+
+.navLogin a {
+  display: block;
+  width: 60px;
+  height: 30px;
+  border: none;
+  background-color: rgb(52, 152, 219);
+  font-family: arial;
+  font-size: 16px;
+  color: rgb(253, 254, 254);
+  line-height: 63px;
+  cursor: pointer;
+  float: left;
+}
+
+.bodyContainer {
+  padding-top: 40px;
+}
+
+.bodyContainer h2 {
+  font-family: arial;
+  font-size: 40px;
+  color: #111;
+  line-height: 50px;
+  padding-top: 40px;
+  text-align: center;
+}
+
+/*CSS for Signuppage*/
+
+.signupForm {
+  width: 400px;
+  margin: 0 auto;
+  padding-top: 30px;
+}
+
+.signupForm input {
+  width: 90%;
+  height: 40px;
+  padding: 0px 5%;
+  margin-bottom: 4px;
+  border: none;
+  background-color: #FFF;
+  font-family: arial;
+  font-size: 16px;
+  color: #111;
+  line-height: 40px;
+}
+
+.signupForm button {
+  display: block;
+  margin: 0 auto;
+  width: 30%;
+  height: 40px;
+  border: none;
+  background-color: #222;
+  font-family: arial;
+  font-size: 16px;
+  color: white;
+  line-height: 40px;
+  cursor: pointer;
+}
+
+.signupForm button:hover {
+  background-color: #111;
+}
