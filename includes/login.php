@@ -1,12 +1,10 @@
 <?php
-
 declare(strict_types=1);
 
 session_start();
 
-$pdo = new PDO('sqlite:includes/databas.sql');
-
-if (isset($_POST['uid']) && isset($_POST['email']) && isset($_POST['pwd'])) {
+$pdo = new PDO('sqlite:./databas.sql');
+if ((isset($_POST['uid']) || isset($_POST['email'])) && isset($_POST['pwd'])) {
   $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
   $username = filter_var($_POST['uid'], FILTER_SANITIZE_STRING);
 

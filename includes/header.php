@@ -14,11 +14,13 @@
         <li><a href="index.php">Home</a></li>
       </ul>
         <div class="navLogin">
-          <form action="POST">
-            <input type="text" name="user_username" placeholder="Username/email">
-            <input type="password" name="user_password" placeholder="Password">
+
+          <form action="/includes/login.php" method="POST">
+            <input type="text" name="uid" placeholder="Username/email">
+            <input type="password" name="pwd" placeholder="Password">
             <button type="submit" name="login">Login</button>
           </form>
+
             <a href="signup.php">Sign Up</a>
         </div>
     </div>
