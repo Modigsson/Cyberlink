@@ -16,18 +16,20 @@
         <div class="navLogin">
 
           <form action="/includes/login.php" method="POST">
-            <input type="text" name="uid" placeholder="Username/email">
-            <input type="password" name="pwd" placeholder="Password">
 
             <?php
-            if ($_COOKIE['Cyberuser', 'authenticated']) ?> {
-              <button type="submit" name="login">Logout</button>
-            } <?php else: ?> {
-              <button type="submit" name="login">Login</button>
-            }
-          </form>
+            if (isset($_COOKIE['Cyberuser'])):
+            ?>
+              <a href="/includes/logout.php">Logout</a>
 
-            <a href="signup.php">Sign Up</a>
+            <?php else: ?>
+              <input type="text" name="uid" placeholder="Username/email">
+              <input type="password" name="pwd" placeholder="Password">
+              <button type="submit" name="login">Login</button>
+              <a href="signup.php">Sign Up</a>
+            <?php endif; ?>
+            </form>
+
         </div>
     </div>
   </nav>

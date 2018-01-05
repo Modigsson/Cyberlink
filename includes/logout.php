@@ -1,14 +1,11 @@
 <?php
-
 declare(strict_types=1);
 
-include_once '../index.php';
+setcookie('Cyberuser', "", time()-9999999, '/');
 
 $_SESSION = array();
 session_destroy();
 
-setcookie('Cyberuser', 'authenticated', time()-1);
-
-header(Location: ../index.php);
+header('Location: ../index.php');
 
  ?>
