@@ -23,7 +23,8 @@ if ((isset($_POST['uid']) || isset($_POST['email'])) && isset($_POST['pwd'])) {
       echo "You are now logged in";
     }
   }
-  header('Location: ../index.php');
+  header('Location: ../home.php');
+  setcookie('Cyberuser', 'authenticated', time()+3600*24*3);
 }
 
  ?>
