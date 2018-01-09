@@ -11,7 +11,8 @@ include 'includes/header.php';
 <div class="container">
 
   <form action="home.php" method="POST">
-    <textarea class="description" rows="8" cols="60" name="content" placeholder="Post your link"></textarea></br>
+    <input type="url" name="URL" placeholder="URL"></br>
+    <textarea class="link" rows="5" cols="40" name="content" placeholder="Description"></textarea></br>
     <input type="submit" name="Submit" value="Post">
 </div>
 

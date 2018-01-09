@@ -10,9 +10,15 @@
 <header>
   <nav>
     <div class="headWrapper">
+    <?php if (isset($_COOKIE['Cyberuser'])): ?>
+
       <ul>
         <li><a href="index.php">Home</a></li>
+        <li><a href="../home.php">Feed</a></li>
       </ul>
+
+    <?php endif; ?>
+
         <div class="navLogin">
 
           <form action="/includes/login.php" method="POST">
