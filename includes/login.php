@@ -18,6 +18,7 @@ if (isset($_POST['uid']) && isset($_POST['pwd'])) {
     if (password_verify($_POST['pwd'], $user['user_password'])){
       setcookie('Cyberuser', 'authenticated', time()+3600*24*3, '/');
       $_SESSION['user_username'] = $user['user_username'];
+      $_SESSION['user_id'] = $user['user_id'];
       echo "You are now logged in";
     }
   }
