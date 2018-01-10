@@ -17,3 +17,20 @@ include 'includes/header.php';
 
 </form>
 </html>
+
+<?php
+
+$pdo = new PDO('sqlite:includes/databas.sql');
+
+$statement = $pdo->prepare('SELECT * FROM posts');
+$statement->execute();
+
+$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
+<?php foreach ($posts as $post): ?>
+  <div class="post">
+    <a href="<?php echo $post['link']; ?>"> <?php echo $post['description']; ?> </a>
+  </div>
+  <?php endforeach; ?>

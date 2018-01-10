@@ -27,3 +27,5 @@ if (isset($_POST['content'], $_POST['URL'])) {
   }
 
 }
+
+header('Location: ../home.php');
