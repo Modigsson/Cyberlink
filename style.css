@@ -103,12 +103,13 @@ a {
   text-align: center;
 }
 
-.post div {
+.post {
   border: 2px solid black;
   height: 7vh;
   width: 50vw;
   background-color: wheat;
 }
+
 
 /*CSS for Signuppage*/
 
