@@ -22,7 +22,7 @@ if (isset($_POST['uid']) && isset($_POST['pwd'])) {
       echo "You are now logged in";
     }
   }
-  header('Location: ../home.php');
+  header('Location: ../index.php');
 }
 
  ?>
