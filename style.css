@@ -110,6 +110,12 @@ a {
   background-color: wheat;
 }
 
+form.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 
 /*CSS for Signuppage*/
 
