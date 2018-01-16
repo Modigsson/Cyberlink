@@ -2,8 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <?php if (isset($_COOKIE['Cyberuser'])): ?>
+      <title>Cyberlinked</title>
+    <?php else: ?>
+      <title>Cyberlink</title>
+    <?php endif; ?>
+
+
     <link rel="stylesheet" type="text/css" href="style.css">
-    <title></title>
   </head>
   <body>
 
@@ -13,8 +19,8 @@
     <?php if (isset($_COOKIE['Cyberuser'])): ?>
 
       <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="../home.php">Feed</a></li>
+        <li><a href="../home.php">Home</a></li>
+        <li><a href="../feed.php">Feed</a></li>
       </ul>
 
     <?php endif; ?>

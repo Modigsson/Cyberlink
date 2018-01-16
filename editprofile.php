@@ -1,19 +1,32 @@
-<?php include 'includes/header.php' ?>
+<?php
+
+include 'includes/header.php';
+
+if (!isset($_COOKIE['Cyberuser'])) {
+  header('Location: index.php');
+  die();
+}
+$userID = $_COOKIE['Cyberuser'];
+$pdo = new PDO('sqlite:includes/databas.sql');
+$statement = $pdo->prepare('SELECT * from users WHERE user_id = :user_id');
+$statement->bindParam(':user_id', $userID, PDO::PARAM_STR);
+$statement->execute();
+$result = $statement->fetch(PDO::FETCH_ASSOC);
+
+?>
 
 <html>
 <body>
 
 <div class="editContainer">
-  <form class="container" action="editprofile.html" method="post">
-    <input class="editEmail" type="text" name="Email" placeholder="Email"></br>
-    <input class="editPassword" type="password" name=" New Password" placeholder="Password"></br>
-    <input type="verifyPassword" name="verifyPassword" placeholder="Verify Password"></br>
-    <input type="password" name="Current Password" placeholder="Current Password"></br>
-    <textarea class="editBiography" rows="8" cols="80" placeholder="Edit Biography"></textarea></br>
+  <form class="container" action="updateprofile.php" method="post">
+    <input class="editEmail" type="text" name="Email" value="<?php echo $result['user_email']; ?>"></br>
+    <input class="editPassword" type="password" name="newPassword" placeholder="New Password"></br>
+    <input class="verifyPassword" type="password" name="verifyPassword" placeholder="Verify Password"></br>
+    <input type="password" name="currentPassword" placeholder="Current Password" required></br>
+    <textarea class="editBiography" rows="8" cols="80" value="<?php echo $result['user_description']; ?>"></textarea></br>
     <input type="submit" name="Edit" value="Save changes">
   </form>
 </div>
 
-
-
-<?php include 'includes/footer'; ?>
+<?php include 'includes/footer.php'; ?>

@@ -1,7 +1,9 @@
 <?php
 declare(strict_types=1);
 
-session_start();
+include 'includes/header.php';
+
+// session_start();
 
 $pdo = new PDO('sqlite:./databas.sql');
 if (isset($_POST['uid']) && isset($_POST['pwd'])) {
@@ -15,14 +17,13 @@ if (isset($_POST['uid']) && isset($_POST['pwd'])) {
   if (!$user) {
     echo "Error";
   } else {
-    if (password_verify($_POST['pwd'], $user['user_password'])){
-      setcookie('Cyberuser', 'authenticated', time()+3600*24*3, '/');
-      $_SESSION['user_username'] = $user['user_username'];
-      $_SESSION['user_id'] = $user['user_id'];
-      echo "You are now logged in";
+    if (password_verify($_POST['pwd'], $user['user_password'])) {
+      setcookie('Cyberuser', $user['user_id'], time()+3600*24*3, '/');
+      // $_SESSION['user_username'] = $user['user_username'];
+      // $_SESSION['user_id'] = $user['user_id'];
     }
   }
-  header('Location: ../index.php');
+  header('Location: ../home.php');
 }
 
  ?>
