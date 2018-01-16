@@ -1,30 +1,66 @@
 <?php
 declare(strict_types=1);
-
-// session_start();
+session_start();
 include 'includes/header.php';
 
+$userID = $_COOKIE['Cyberuser'];
 $pdo = new PDO('sqlite:includes/databas.sql');
-$statement = $pdo->prepare('SELECT user_password from users WHERE user_id = :user_id');
+$statement = $pdo->prepare('SELECT * FROM users WHERE user_id = :user_id');
+$statement->bindParam(':user_id', $userID, PDO::PARAM_STR);
 $statement->execute();
 $result = $statement->fetch(PDO::FETCH_ASSOC);
 
 if (!password_verify($_POST['currentPassword'], $result['user_password'])) {
-  echo '<script language="javascript">';
-  echo 'alert("Wrong password")';
-  echo '</script>';
+  $_SESSION['failed'] = true;
+  header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else {
-  $newEmail = trim(filter_var($_POST['Email'], FILTER_SANITIZE_EMAIL));
-  $newPassword = password_hash($_POST['newPassword'], PASSWORD_DEFAULT);
-  $newBiography = filter_var($_POST['user_description'], FILTER_SANITIZE_STRING);
-  $updatedEmail = $pdo->prepare('UPDATE * SET user_email = :user_email, user_password = :user_password, user_description = :user_description WHERE user_id = :user_id');
 
-  $result = $statement->execute(array(
-    ':user_email' => $newEmail,
-    ':user:password' => $newPassword,
-    ':user_description' => $newBiography
-  ));
+  if ($_POST['Email'] != "") {
+    $newEmail = trim(filter_var($_POST['Email'], FILTER_SANITIZE_EMAIL));
+    $statement = $pdo->prepare('UPDATE users SET user_email = :user_email WHERE user_id = :user_id');
+    try {
+      $result = $statement->execute(array(
+        ':user_email' => $newEmail,
+        ':user_id' => $userID,
+        // ':user_password' => $newPassword,
+        // ':user_description' => $newBiography
+      ));
+    } catch (PDOException $e) {
+      die($e->getMessage());
+    }
+  }
+
+  if ($_POST['newPassword'] != "") {
+    $newPassword = password_hash($_POST['newPassword'], PASSWORD_DEFAULT);
+    $statement = $pdo->prepare('UPDATE users SET user_password = :user_password WHERE user_id = :user_id');
+    try {
+      $result = $statement->execute(array(
+        // ':user_email' => $newEmail,
+        ':user_id' => $userID,
+        ':user_password' => $newPassword,
+        // ':user_description' => $newBiography
+      ));
+    } catch (PDOException $e) {
+      die($e->getMessage());
+    }
+  }
+
+  if ($_POST['user_description'] != "") {
+    $newBiography = trim(filter_var($_POST['user_description'], FILTER_SANITIZE_EMAIL));
+    $statement = $pdo->prepare('UPDATE users SET user_description = :user_description WHERE user_id = :user_id');
+    try {
+      $result = $statement->execute(array(
+        // ':user_email' => $newEmail,
+        ':user_id' => $userID,
+        // ':user_password' => $newPassword,
+        ':user_description' => $newBiography
+      ));
+    } catch (PDOException $e) {
+      die($e->getMessage());
+    }
+  }
+
+  sleep(1);
 
   header('Location: home.php');
-  echo "Accounts successfully updated";
 }

@@ -15,7 +15,8 @@ if (isset($_POST['uid']) && isset($_POST['pwd'])) {
 
   $user = $statement->fetch(PDO::FETCH_ASSOC);
   if (!$user) {
-    echo "Error";
+    header('Location: index.php');
+    die();
   } else {
     if (password_verify($_POST['pwd'], $user['user_password'])) {
       setcookie('Cyberuser', $user['user_id'], time()+3600*24*3, '/');

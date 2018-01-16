@@ -1,6 +1,13 @@
 <?php
-
+session_start();
 include 'includes/header.php';
+
+if (isset($_SESSION['failed'])) {
+  echo '<script language="javascript">';
+  echo 'alert("Wrong password")';
+  echo '</script>';
+  unset($_SESSION['failed']);
+}
 
 if (!isset($_COOKIE['Cyberuser'])) {
   header('Location: index.php');
@@ -20,11 +27,11 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
 
 <div class="editContainer">
   <form class="container" action="updateprofile.php" method="post">
-    <input class="editEmail" type="text" name="Email" value="<?php echo $result['user_email']; ?>"></br>
+    <input class="editEmail" type="text" name="Email" placeholder="Email"></br>
     <input class="editPassword" type="password" name="newPassword" placeholder="New Password"></br>
     <input class="verifyPassword" type="password" name="verifyPassword" placeholder="Verify Password"></br>
     <input type="password" name="currentPassword" placeholder="Current Password" required></br>
-    <textarea class="editBiography" rows="8" cols="80" value="<?php echo $result['user_description']; ?>"></textarea></br>
+    <textarea class="editBiography" name="user_description" rows="8" cols="80" value="<?php echo $result['user_description']; ?>"></textarea></br>
     <input type="submit" name="Edit" value="Save changes">
   </form>
 </div>
