@@ -34,9 +34,13 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 <?php foreach ($posts as $post):
  ?>
   <div class="post">
+    <form class="editLink" action="posts/editpost.php" method="post">
+      <input type="hidden" name="edit">
+      <button class="editButton" type="submit" name="edit">Edit</button>
+    </form>
     <form class="deleteLink" action="posts/delete.php" method="POST">
       <input type="hidden" name="linkID">
-      <button class="delete" type="submit" name="delete">delete</button>
+      <button class="deleteButton" type="submit" name="delete">Delete</button>
     </form>
     <form action="feed.php" method="POST">
       <a href="<?php echo $post['link']; ?>"> <?php echo $post['description']; ?> </a>

@@ -13,5 +13,5 @@ if (isset($_POST['linkID'])) {
   //     die(var_dump($pdo->errorInfo()));
   //   }
 
-  header('Location: ../feed.php?success');
+  header('Location: ../feed.php');
 }

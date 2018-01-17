@@ -110,7 +110,12 @@ a {
   background-color: wheat;
 }
 
-.delete {
+.deleteButton {
+  position: relative;
+  float: right;
+}
+
+.editButton {
   position: relative;
   float: right;
 }
