@@ -1,13 +1,13 @@
 <?php
 session_start();
 include 'includes/header.php';
+include 'upload.php';
 $userInfo = $_COOKIE['Cyberuser'];
 $pdo = new PDO('sqlite:includes/databas.sql');
 $statement = $pdo->prepare('SELECT * from users WHERE user_id = :user_id');
 $statement->bindParam(':user_id', $userInfo, PDO::PARAM_STR);
 $statement->execute();
 $result = $statement->fetch(PDO::FETCH_ASSOC);
-
 ?>
 
 <?php if(isset($_COOKIE['Cyberuser'])); ?>
@@ -17,6 +17,9 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
     <h2>Welcome <?php echo $result['user_username']; ?></h2>
       <div class="pictureContent">
         <form action="upload.php" method="POST" enctype="multipart/form-data">
+          <div class="profilePicture">
+            <img src="<?php echo $imageResult['user_picture']; ?>">
+          </div>
           <label for="avatar">Choose a pic</label>
           <input type="file" name="avatar" accept=".png, .jpg, .jpeg" required><br>
           <button type="submit" name="submit">Upload</button>
