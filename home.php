@@ -17,7 +17,8 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
     <h2>Welcome <?php echo $result['user_username']; ?></h2>
       <div class="pictureContent">
         <form action="upload.php" method="POST" enctype="multipart/form-data">
-          <input type="file" name="file">
+          <label for="avatar">Choose a pic</label>
+          <input type="file" name="avatar" accept=".png, .jpg, .jpeg" required><br>
           <button type="submit" name="submit">Upload</button>
         </form>
       </div>
