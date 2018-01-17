@@ -32,7 +32,6 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <?php foreach ($posts as $post):
-  $postId = $post['id'];
  ?>
   <div class="post">
     <form class="deleteLink" action="posts/delete.php" method="POST">

@@ -24,11 +24,11 @@ $pdo = new PDO('sqlite:includes/databas.sql');
       ':user_password' => $pwd
     ));
 
-    if ($result) {
-      echo "Your account has been added successfully!";
-    } else {
-      echo "Account could not be created.";
-    }
+    // if ($result) {
+    //   echo "Your account has been added successfully!";
+    // } else {
+    //   echo "Account could not be created.";
+    // }
 
     header('Location: /index.php');
 }
