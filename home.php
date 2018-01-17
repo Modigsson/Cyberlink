@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'includes/header.php';
 $userInfo = $_COOKIE['Cyberuser'];
 $pdo = new PDO('sqlite:includes/databas.sql');
@@ -9,11 +10,17 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
-<?php if(isset($_SESSION['Cyberuser'])); ?>
+<?php if(isset($_COOKIE['Cyberuser'])); ?>
 
-<section class="bodyContainer">
+  <section class="bodyContainer">
   <div class="bodyWrapper">
-    <h2>Welcome</h2>
+    <h2>Welcome <?php echo $result['user_username']; ?></h2>
+      <div class="pictureContent">
+        <form action="upload.php" method="POST" enctype="multipart/form-data">
+          <input type="file" name="file">
+          <button type="submit" name="submit">Upload</button>
+        </form>
+      </div>
     <h3>Visit the feed section to share your own links and see others</h3>
   </div>
 

@@ -20,8 +20,8 @@ if (isset($_POST['uid']) && isset($_POST['pwd'])) {
   } else {
     if (password_verify($_POST['pwd'], $user['user_password'])) {
       setcookie('Cyberuser', $user['user_id'], time()+3600*24*3, '/');
-      // $_SESSION['user_username'] = $user['user_username'];
-      // $_SESSION['user_id'] = $user['user_id'];
+      $_SESSION['user_username'] = $user['user_username'];
+      $_SESSION['user_id'] = $user['user_id'];
     }
   }
   header('Location: ../home.php');
