@@ -18,7 +18,7 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
       <div class="pictureContent">
         <form action="upload.php" method="POST" enctype="multipart/form-data">
           <div class="profilePicture">
-            <img src="<?php echo "images/.$imageResult"?>">
+            <img src="">
           </div>
           <label for="avatar">Choose a pic</label>
           <input type="file" name="avatar" accept=".png, .jpg, .jpeg" required><br>

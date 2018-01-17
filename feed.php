@@ -32,14 +32,15 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <?php foreach ($posts as $post):
+  $postID = $post['id'];
  ?>
-  <div class="post">
+  <div id=<?php echo $post['id']; ?> class="post">
     <form class="editLink" action="posts/editpost.php" method="post">
-      <input type="hidden" name="edit">
+      <input type="hidden" name="editPost">
       <button class="editButton" type="submit" name="edit">Edit</button>
     </form>
     <form class="deleteLink" action="posts/delete.php" method="POST">
-      <input type="hidden" name="linkID">
+      <input type="hidden" name="deletePost" value=<?php echo $post['id']; ?>>
       <button class="deleteButton" type="submit" name="delete">Delete</button>
     </form>
     <form action="feed.php" method="POST">
