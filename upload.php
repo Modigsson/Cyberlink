@@ -18,7 +18,7 @@ $statement->execute();
 header('Location: home.php');
 }
 
-$getImage = $pdo->prepare('SELECT user_picture FROM users WHERE user_id = :user_id');
+$getImage = $pdo->prepare('SELECT * FROM users WHERE user_id = :user_id');
 $getImage->bindParam(':user_id', $id, PDO::PARAM_STR);
 $getImage->execute();
 $imageResult = $getImage->fetchAll(PDO::FETCH_ASSOC);

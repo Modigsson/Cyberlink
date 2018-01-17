@@ -106,8 +106,13 @@ a {
 .post {
   border: 2px solid black;
   height: 7vh;
-  width: 50vw;
+  width: 70vw;
   background-color: wheat;
+}
+
+.delete {
+  position: relative;
+  float: right;
 }
 
 form.container {

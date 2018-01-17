@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 include 'includes/header.php';
+include 'posts/delete.php';
 
 ?>
 
@@ -21,7 +22,6 @@ include 'includes/header.php';
 </html>
 
 <?php
-
 $pdo = new PDO('sqlite:includes/databas.sql');
 
 $statement = $pdo->prepare('SELECT * FROM posts');
@@ -31,8 +31,17 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<?php foreach ($posts as $post): ?>
+<?php foreach ($posts as $post):
+  $postId = $post['id'];
+ ?>
   <div class="post">
-    <a href="<?php echo $post['link']; ?>"> <?php echo $post['description']; ?> </a>
+    <form class="deleteLink" action="posts/delete.php" method="POST">
+      <input type="hidden" name="linkID">
+      <button class="delete" type="submit" name="delete">delete</button>
+    </form>
+    <form action="feed.php" method="POST">
+      <a href="<?php echo $post['link']; ?>"> <?php echo $post['description']; ?> </a>
+    </form>
   </div>
+
   <?php endforeach; ?>
