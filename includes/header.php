@@ -1,8 +1,14 @@
+<?php
+if (isset($_SESSION['user_id'])) {
+    $loggedIn = $_SESSION['user_id'];
+}
+
+ ?>
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
-    <?php if (isset($_COOKIE['Cyberuser'])): ?>
+    <?php if (isset($loggedIn)): ?>
       <title>Cyberlinked</title>
     <?php else: ?>
       <title>Cyberlink</title>
@@ -16,7 +22,7 @@
 <header>
   <nav>
     <div class="headWrapper">
-    <?php if (isset($_COOKIE['Cyberuser'])): ?>
+    <?php if (isset($loggedIn)): ?>
 
       <ul>
         <li><a href="../home.php">Home</a></li>
@@ -30,7 +36,7 @@
           <form action="/includes/login.php" method="POST">
 
             <?php
-            if (isset($_COOKIE['Cyberuser'])):
+            if (isset($loggedIn)):
             ?>
               <a href="/includes/logout.php">Logout</a>
 

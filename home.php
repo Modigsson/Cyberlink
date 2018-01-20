@@ -1,20 +1,28 @@
 <?php
 session_start();
+include $_SERVER["DOCUMENT_ROOT"] . "/includes/connection.php";
 include 'includes/header.php';
-include 'upload.php';
-$userInfo = $_COOKIE['Cyberuser'];
-$pdo = new PDO('sqlite:includes/databas.sql');
-$statement = $pdo->prepare('SELECT * from users WHERE user_id = :user_id');
-$statement->bindParam(':user_id', $userInfo, PDO::PARAM_STR);
-$statement->execute();
-$result = $statement->fetch(PDO::FETCH_ASSOC);
+// include 'upload.php';
+$loggedIn = $_SESSION['user_id'];
+
+
+try {
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $statement = $pdo->prepare('SELECT * FROM users WHERE user_id=:user_id');
+    $statement->bindParam(':user_id', $loggedIn);
+    $statement->execute();
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+} catch (\Exception $e) {
+    echo "Database error" . "<br>" . $e->getMessage();
+}
+
+
 ?>
 
-<?php if(isset($_COOKIE['Cyberuser'])); ?>
-
+<?php if (isset($loggedIn)); ?>
   <section class="bodyContainer">
   <div class="bodyWrapper">
-    <h2>Welcome <?php echo $result['user_username']; ?></h2>
+    <h2>Welcome <?php echo $result[0]['user_username']; ?></h2>
       <div class="pictureContent">
         <form action="upload.php" method="POST" enctype="multipart/form-data">
           <div class="profilePicture">
@@ -31,9 +39,9 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
   <div class="myProfile">
 
     <ul>
-      <li><?php echo $result['user_username']; ?></li>
-      <li><?php echo $result['user_email']; ?></li>
-      <li><?php echo $result['user_description']; ?></li>
+      <li><?php echo $result[0]['user_username']; ?></li>
+      <li><?php echo $result[0]['user_email']; ?></li>
+      <li><?php echo $result[0]['user_description']; ?></li>
       <li><a href="editprofile.php">Edit your profile</a></li>
     </ul>
 
