@@ -1,14 +1,14 @@
-body {
+/* body {
   background-color: #CCC;
 }
 
 a {
   text-decoration: none;
-}
+} */
 
 /*CSS for Homepage*/
 
-.headWrapper {
+/* .headWrapper {
   margin: 0 auto;
   width: 1000px;
 }
@@ -124,12 +124,12 @@ form.container {
   display: flex;
   align-items: center;
   flex-direction: column;
-}
+} */
 
 
 /*CSS for Signuppage*/
 
-.signupForm {
+/* .signupForm {
   width: 400px;
   margin: 0 auto;
   padding-top: 30px;
@@ -164,4 +164,4 @@ form.container {
 
 .signupForm button:hover {
   background-color: #111;
-}
+} */

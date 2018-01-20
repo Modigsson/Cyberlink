@@ -2,9 +2,8 @@
 declare(strict_types=1);
 session_start();
 include 'includes/header.php';
-
-$userID = $_COOKIE['Cyberuser'];
-$pdo = new PDO('sqlite:includes/databas.sql');
+include $_SERVER["DOCUMENT_ROOT"] . "/includes/connection.php";
+$userID = $_SESSION['user_id'];
 $statement = $pdo->prepare('SELECT * FROM users WHERE user_id = :user_id');
 $statement->bindParam(':user_id', $userID, PDO::PARAM_STR);
 $statement->execute();

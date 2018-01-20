@@ -1,8 +1,8 @@
 <?php
+declare(strict_types=1);
 session_start();
 include $_SERVER["DOCUMENT_ROOT"] . "/includes/connection.php";
 include 'includes/header.php';
-// include 'upload.php';
 $loggedIn = $_SESSION['user_id'];
 
 
@@ -15,8 +15,6 @@ try {
 } catch (\Exception $e) {
     echo "Database error" . "<br>" . $e->getMessage();
 }
-
-
 ?>
 
 <?php if (isset($loggedIn)); ?>
@@ -26,7 +24,7 @@ try {
       <div class="pictureContent">
         <form action="upload.php" method="POST" enctype="multipart/form-data">
           <div class="profilePicture">
-            <img src="">
+            <img src= <?php echo $result[0]['user_picture']; ?>>
           </div>
           <label for="avatar">Choose a pic</label>
           <input type="file" name="avatar" accept=".png, .jpg, .jpeg" required><br>
