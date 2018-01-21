@@ -26,8 +26,13 @@ $pdo = new PDO('sqlite:includes/databas.sql');
 
 $statement = $pdo->prepare('SELECT * FROM posts');
 $statement->execute();
-
 $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+$statementGet = $pdo->prepare('SELECT * FROM votes');
+$statementGet->execute();
+$voteResult = $statementGet->fetchAll(PDO::FETCH_ASSOC);
+// echo '<pre>';
+// die(var_dump($voteResult));
 
 ?>
 
@@ -35,6 +40,15 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
   $postID = $post['id'];
  ?>
   <div id=<?php echo $post['id']; ?> class="post">
+    <p><?php echo $voteResult[0]['value']; ?></p>
+    <form class="" action="posts/vote.php" method="post">
+      <input type="hidden" name="postID" value=<?php echo $postID ?>>
+      <button class="voteButton" type="submit" name="voteUp">Like</button>
+    </form>
+    <form class="" action="posts/vote.php" method="post">
+      <input type="hidden" name="postID" value=<?php echo $postID ?>>
+      <button class="voteButton" type="submit" name="voteDown">Dislike</button>
+    </form>
     <form class="editLink" action="posts/editpost.php" method="post">
       <input type="hidden" name="editPost">
       <button class="editButton" type="submit" name="edit">Edit</button>
