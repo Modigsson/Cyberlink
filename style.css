@@ -1,112 +1,3 @@
-/*
-
-a {
-  text-decoration: none;
-} */
-
-/*CSS for Homepage*/
-
-/* .headWrapper {
-  margin: 0 auto;
-  width: 1000px;
-}
-
-.headWrapper ul {
-  float: left;
-}
-
-
-
-
-
-.navLogin {
-  float: right;
-}
-
-.navLogin form {
-  float: left;
-  padding-top: 15px;
-}
-
-.navLogin form input {
-  float: left;
-  width: 140px;
-  height: 30px;
-  padding: 0px 10px;
-  margin-right: 10px;
-  border: none;
-  background-color: rgb(253, 254,254);
-  font-family: arial;
-  font-size: 14px;
-  color: #111;
-  line-height: 30px;
-}
-
-.navLogin form button {
-  float: left;
-  width: 60px;
-  height: 30px;
-  padding: 0px 10px;
-  margin-right: 10px;
-  border: none;
-  background-color: rgb(52, 152, 219);
-  font-family: arial;
-  font-size: 14px;
-  color: rgb(253, 254, 254);
-  cursor: pointer;
-}
-
-.navLogin form button:hover {
-  background-color: #CCC;
-}
-
-
-
-.bodyContainer {
-  padding-top: 40px;
-}
-
-.bodyContainer h2 {
-  font-family: arial;
-  font-size: 40px;
-  color: #111;
-  line-height: 50px;
-  padding-top: 40px;
-  text-align: center;
-}
-
-.post {
-  border: 2px solid black;
-  height: 7vh;
-  width: 70vw;
-  background-color: wheat;
-}
-
-.deleteButton {
-  position: relative;
-  float: right;
-}
-
-.editButton {
-  position: relative;
-  float: right;
-}
-
-form.container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-} */
-
-/*CSS for Signuppage*/
-
-/*
-
-
-
-
-
- */
 body {
   background-color: #FFFF;
 }
@@ -210,6 +101,7 @@ h2 {
 }
 
 .post {
+  background-color: wheat;
   width: 50vw;
   display: flex;
   flex-direction: column-reverse;
@@ -265,4 +157,28 @@ p {
 
 .signupForm button:hover {
   background-color: #111;
+}
+
+.navLogin form input {
+  margin-top: 15px;
+  float: left;
+  width: 140px;
+  height: 30px;
+  padding: 0px 10px;
+  margin-right: 10px;
+  border: none;
+  background-color: rgb(253, 254,254);
+  font-family: arial;
+  font-size: 14px;
+  color: #111;
+  line-height: 30px;
+}
+
+.navLogin button {
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.navLogin button:hover {
+  background-color: wheat;
 }

@@ -21,8 +21,6 @@ if (!password_verify($_POST['currentPassword'], $result['user_password'])) {
       $result = $statement->execute(array(
         ':user_email' => $newEmail,
         ':user_id' => $userID,
-        // ':user_password' => $newPassword,
-        // ':user_description' => $newBiography
       ));
     } catch (PDOException $e) {
       die($e->getMessage());
@@ -34,10 +32,8 @@ if (!password_verify($_POST['currentPassword'], $result['user_password'])) {
     $statement = $pdo->prepare('UPDATE users SET user_password = :user_password WHERE user_id = :user_id');
     try {
       $result = $statement->execute(array(
-        // ':user_email' => $newEmail,
         ':user_id' => $userID,
         ':user_password' => $newPassword,
-        // ':user_description' => $newBiography
       ));
     } catch (PDOException $e) {
       die($e->getMessage());
@@ -49,9 +45,7 @@ if (!password_verify($_POST['currentPassword'], $result['user_password'])) {
     $statement = $pdo->prepare('UPDATE users SET user_description = :user_description WHERE user_id = :user_id');
     try {
       $result = $statement->execute(array(
-        // ':user_email' => $newEmail,
         ':user_id' => $userID,
-        // ':user_password' => $newPassword,
         ':user_description' => $newBiography
       ));
     } catch (PDOException $e) {
