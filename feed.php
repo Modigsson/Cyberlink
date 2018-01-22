@@ -37,17 +37,79 @@ $voteResult = $statementGet->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <?php foreach ($posts as $post):
+  $userID = $_SESSION['user_id'];
   $postID = $post['id'];
+  $statement = $pdo->prepare('SELECT sum(value) AS value from votes  WHERE link_id=:link_id');
+$statement->bindParam(':link_id', $postID);
+$statement->execute();
+$vote = $statement->fetch(PDO::FETCH_ASSOC);
+
+$CheckVote = $pdo->prepare("SELECT * FROM votes WHERE user_id=:user_id AND link_id=:postID");
+$CheckVote->bindParam(':user_id', $userID);
+$CheckVote->bindParam(':postID', $postID);
+$CheckVote->execute();
+$CheckVote = $CheckVote->fetchAll(PDO::FETCH_ASSOC);
  ?>
   <div id=<?php echo $post['id']; ?> class="post">
-    <p><?php echo $voteResult[0]['value']; ?></p>
+    <p class="<?php
+    if (!empty($CheckVote[0]['value'])) {
+        if ($CheckVote[0]['value'] == 1) {
+            echo "positive";
+        } elseif ($CheckVote[0]['value'] == -1) {
+            echo "negative";
+        } else {
+            echo "default";
+        }
+    } ?>"><?php if (!empty($vote['value'])):?>
+      <?php echo $vote['value'];?>
+    <?php else: echo "0";?>
+    <?php endif; ?></p>
     <form class="" action="posts/vote.php" method="post">
+      <label class="upVote">
       <input type="hidden" name="postID" value=<?php echo $postID ?>>
-      <button class="voteButton" type="submit" name="voteUp">Like</button>
+      <input type="submit" name="voteUp" style="display:none;">
+      <?php
+      if (!empty($CheckVote[0]['value'])) {
+          if ($CheckVote[0]['value'] == 1) {
+              ?>
+              <img src="/images/green-arrow-up.png" alt="">
+              <?php
+          } else {
+              ?>
+            <img src="/images/default-arrow-up.png" alt="">
+            <?php
+          }
+      } else {
+          ?>
+          <img src="/images/default-arrow-up.png" alt="">
+          <?php
+      }
+       ?>
+       </label>
+
     </form>
     <form class="" action="posts/vote.php" method="post">
+      <label class="downVote">
       <input type="hidden" name="postID" value=<?php echo $postID ?>>
-      <button class="voteButton" type="submit" name="voteDown">Dislike</button>
+      <input type="submit" name="voteDown" style="display:none;">
+      <?php
+      if (!empty($CheckVote[0]['value'])) {
+          if ($CheckVote[0]['value'] == -1) {
+              ?>
+              <img src="/images/red-arrow-down.png" alt="">
+              <?php
+          } else {
+              ?>
+            <img src="/images/default-arrow-down.png" alt="">
+            <?php
+          }
+      } else {
+          ?>
+          <img src="/images/default-arrow-down.png" alt="">
+          <?php
+      }
+       ?>
+       </label>
     </form>
     <form class="editLink" action="posts/editpost.php" method="post">
       <input type="hidden" name="editPost">

@@ -126,7 +126,6 @@ form.container {
   flex-direction: column;
 } */
 
-
 /*CSS for Signuppage*/
 
 /* .signupForm {
@@ -165,3 +164,20 @@ form.container {
 .signupForm button:hover {
   background-color: #111;
 } */
+
+p {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+
+.default {
+  color: gray;
+}
