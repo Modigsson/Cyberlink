@@ -64,7 +64,7 @@ $CheckVote = $CheckVote->fetchAll(PDO::FETCH_ASSOC);
       <?php echo $vote['value'];?>
     <?php else: echo "0";?>
     <?php endif; ?></p>
-    <form class="" action="posts/vote.php" method="post">
+    <form class="voteUp" action="posts/vote.php" method="post">
       <label class="upVote">
       <input type="hidden" name="postID" value=<?php echo $postID ?>>
       <input type="submit" name="voteUp" style="display:none;">
@@ -88,7 +88,7 @@ $CheckVote = $CheckVote->fetchAll(PDO::FETCH_ASSOC);
        </label>
 
     </form>
-    <form class="" action="posts/vote.php" method="post">
+    <form class="voteDown" action="posts/vote.php" method="post">
       <label class="downVote">
       <input type="hidden" name="postID" value=<?php echo $postID ?>>
       <input type="submit" name="voteDown" style="display:none;">
@@ -111,14 +111,14 @@ $CheckVote = $CheckVote->fetchAll(PDO::FETCH_ASSOC);
        ?>
        </label>
     </form>
-    <form class="editLink" action="posts/editpost.php" method="post">
-      <input type="hidden" name="editPost">
-      <button class="editButton" type="submit" name="edit">Edit</button>
-    </form>
-    <form class="deleteLink" action="posts/delete.php" method="POST">
-      <input type="hidden" name="deletePost" value=<?php echo $post['id']; ?>>
-      <button class="deleteButton" type="submit" name="delete">Delete</button>
-    </form>
+      <form class="editLink" action="posts/editpost.php" method="post">
+        <input type="hidden" name="editPost">
+        <button class="editButton" type="submit" name="edit">Edit</button>
+      </form>
+      <form class="deleteLink" action="posts/delete.php" method="POST">
+        <input type="hidden" name="deletePost" value=<?php echo $post['id']; ?>>
+        <button class="deleteButton" type="submit" name="delete">Delete</button>
+      </form>
     <form action="feed.php" method="POST">
       <a href="<?php echo $post['link']; ?>"> <?php echo $post['description']; ?> </a>
     </form>

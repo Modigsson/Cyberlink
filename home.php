@@ -22,17 +22,19 @@ try {
   <div class="bodyWrapper">
     <h2>Welcome <?php echo $result[0]['user_username']; ?></h2>
       <div class="pictureContent">
-        <form action="upload.php" method="POST" enctype="multipart/form-data">
+        <form class="profileInfo" action="upload.php" method="POST" enctype="multipart/form-data">
           <div class="profilePicture">
-            <img src= <?php echo $result[0]['user_picture']; ?>>
+            <img class="profilePic" src= <?php echo $result[0]['user_picture']; ?>>
           </div>
-          <label for="avatar">Choose a pic</label>
-          <input type="file" name="avatar" accept=".png, .jpg, .jpeg" required><br>
-          <button type="submit" name="submit">Upload</button>
+          <label for="avatar"></label>
+          <input class="choosePic" type="file" name="avatar" accept=".png, .jpg, .jpeg" required><br>
+          <button class="uploadButton" type="submit" name="submit">Upload</button>
         </form>
       </div>
-    <h3>Visit the feed section to share your own links and see others</h3>
-  </div>
+      <div class="h3">
+        <h3>Visit the feed section to share your own links and see others</h3>
+      </div>
+    </div>
 
   <div class="myProfile">
 
