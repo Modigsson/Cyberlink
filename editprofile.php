@@ -1,6 +1,7 @@
 <?php
 session_start();
 include 'includes/header.php';
+include $_SERVER["DOCUMENT_ROOT"] . "/includes//connection.php";
 
 if (isset($_SESSION['failed'])) {
   echo '<script language="javascript">';
@@ -9,12 +10,11 @@ if (isset($_SESSION['failed'])) {
   unset($_SESSION['failed']);
 }
 
-if (!isset($_COOKIE['Cyberuser'])) {
+if (!isset($_SESSION['user_id'])) {
   header('Location: index.php');
   die();
 }
-$userID = $_COOKIE['Cyberuser'];
-$pdo = new PDO('sqlite:includes/databas.sql');
+$userID = $_SESSION['user_id'];
 $statement = $pdo->prepare('SELECT * from users WHERE user_id = :user_id');
 $statement->bindParam(':user_id', $userID, PDO::PARAM_STR);
 $statement->execute();
