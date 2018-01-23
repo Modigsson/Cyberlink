@@ -24,7 +24,7 @@ try {
       <div class="pictureContent">
         <form class="profileInfo" action="upload.php" method="POST" enctype="multipart/form-data">
           <div class="profilePicture">
-            <img class="profilePic" src= <?php echo $result[0]['user_picture']; ?>>
+            <img class="profilePic" src="<?php echo "images/".$result[0]['user_picture'] ?>">
           </div>
           <label for="avatar"></label>
           <input class="choosePic" type="file" name="avatar" accept=".png, .jpg, .jpeg" required><br>

@@ -9,17 +9,34 @@ include 'posts/delete.php';
 <!DOCTYPE HTML>
 
 <body>
-<div class="container">
-  <form action="posts/store.php" method="POST">
-    <div class="linkField">
-    <input class="urlField" type="url" name="URL" placeholder="URL"></br>
-    <textarea class="descriptionField" class="link" rows="5" cols="40" name="content" placeholder="Description"></textarea></br>
-    <input class="linkSubmit" type="submit" name="Submit" value="Post">
-  </div>
-</div>
-
+  <?php
+  if (isset($_POST['editPost'])) {
+      ?>
+      <div class="container">
+        <form action="php/updatePost.php" method="POST">
+          <div class="linkField">
+            <input type="hidden" name="postIDValue" value="<?php echo $_POST['postIDValue'] ?>">
+          <input class="urlField" type="url" name="URL" placeholder="URL" value="<?php echo $_POST['linkValue'] ?>"></br>
+          <textarea class="descriptionField" class="link" rows="5" cols="40" name="content" placeholder="Description"><?php echo $_POST['descriptionValue']?></textarea></br>
+          <input class="linkSubmit" type="submit" name="Submit" value="Save">
+        </div>
+      </div>
+      </form>
+      <?php
+  } else {
+      ?>
+    <div class="container">
+      <form action="posts/store.php" method="POST">
+        <div class="linkField">
+        <input class="urlField" type="url" name="URL" placeholder="URL"></br>
+        <textarea class="descriptionField" class="link" rows="5" cols="40" name="content" placeholder="Description"></textarea></br>
+        <input class="linkSubmit" type="submit" name="Submit" value="Post">
+      </div>
+    </div>
 </form>
-</html>
+<?php
+  }
+?>
 
 <?php
 $pdo = new PDO('sqlite:includes/databas.sql');
@@ -111,12 +128,15 @@ $CheckVote = $CheckVote->fetchAll(PDO::FETCH_ASSOC);
        ?>
        </label>
     </form>
-      <form class="editLink" action="posts/editpost.php" method="post">
+      <form class="editLink" action="" method="post">
+        <input type="hidden" name="linkValue" value="<?php echo $post['link'] ?>">
+        <input type="hidden" name="descriptionValue" value="<?php echo $post['description'] ?>">
+        <input type="hidden" name="postIDValue" value="<?php echo $postID ?>">
         <input type="hidden" name="editPost">
-        <button class="editButton" type="submit" name="edit">Edit</button>
+        <button class="editButton" type="submit" name="editPost">Edit</button>
       </form>
       <form class="deleteLink" action="posts/delete.php" method="POST">
-        <input type="hidden" name="deletePost" value=<?php echo $post['id']; ?>>
+        <input type="hidden" name="deletePost" value="<?php echo $postID ?>">
         <button class="deleteButton" type="submit" name="delete">Delete</button>
       </form>
     <form action="feed.php" method="POST">
