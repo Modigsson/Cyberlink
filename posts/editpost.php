@@ -8,15 +8,14 @@ if (isset($_POST['link'], $_POST['description'])) {
   $content = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
   $URL = filter_var($_POST['link'], FILTER_SANITIZE_STRING);
   $postID = filter_var($_POST['postID'], FILTER_SANITIZE_STRING);
-  $statement = $pdo->prepare("UPDATE posts SET link = :link, description = :description WHERE id = :id");
+  $statement = $pdo->prepare("UPDATE posts SET link = :link, description = :description WHERE id = :postID");
 try {
   $updateResult = $statement->execute(array(
     ':link' => $URL,
-    ':description', $content,
-    ':id', $postID,
+    ':description' => $content,
+    ':postID' => $postID,
   ));
   // header('Location: ../feed.php');
-  die(var_dump($updateResult));
 } catch (PDOException $e) {
   die($e->getMessage());
   }
