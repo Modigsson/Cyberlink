@@ -15,7 +15,7 @@ try {
     ':description' => $content,
     ':postID' => $postID,
   ));
-  // header('Location: ../feed.php');
+  header('Location: ../feed.php');
 } catch (PDOException $e) {
   die($e->getMessage());
   }

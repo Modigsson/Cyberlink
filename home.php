@@ -24,7 +24,11 @@ try {
       <div class="pictureContent">
         <form class="profileInfo" action="upload.php" method="POST" enctype="multipart/form-data">
           <div class="profilePicture">
+          <?php if (empty($result[0]['user_picture'])): ?>
+            <img class="profilePic" src= <?php echo 'images/default.png'; ?>>
+          <?php else: ?>
             <img class="profilePic" src= <?php echo $result[0]['user_picture']; ?>>
+          <?php endif; ?>
           </div>
           <label for="avatar"></label>
           <input class="choosePic" type="file" name="avatar" accept=".png, .jpg, .jpeg" required><br>

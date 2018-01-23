@@ -27,11 +27,11 @@ $result = $statement->fetch(PDO::FETCH_ASSOC);
 
 <div class="editContainer">
   <form class="container" action="updateprofile.php" method="post">
-    <input class="editEmail" type="text" name="Email" placeholder="Email"></br>
+    <input class="editEmail" type="text" name="Email" placeholder="Email" value="<?php echo $result['user_email']; ?>"></br>
     <input class="editPassword" type="password" name="newPassword" placeholder="New Password"></br>
     <input class="verifyPassword" type="password" name="verifyPassword" placeholder="Verify Password"></br>
     <input type="password" name="currentPassword" placeholder="Current Password" required></br>
-    <textarea class="editBiography" name="user_description" rows="8" cols="80" value="<?php echo $result['user_description']; ?>"></textarea></br>
+    <textarea class="editBiography" name="user_description" rows="8" cols="80" value=""><?php echo $result['user_description']; ?></textarea></br>
     <input type="submit" name="Edit" value="Save changes">
   </form>
 </div>

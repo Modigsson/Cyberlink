@@ -41,7 +41,7 @@ if (!password_verify($_POST['currentPassword'], $result['user_password'])) {
   }
 
   if ($_POST['user_description'] != "") {
-    $newBiography = trim(filter_var($_POST['user_description'], FILTER_SANITIZE_EMAIL));
+    $newBiography = trim(filter_var($_POST['user_description'], FILTER_SANITIZE_STRING));
     $statement = $pdo->prepare('UPDATE users SET user_description = :user_description WHERE user_id = :user_id');
     try {
       $result = $statement->execute(array(
