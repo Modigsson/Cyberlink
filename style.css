@@ -29,7 +29,7 @@ body {
   float: right;
   font-family: arial;
   font-size: 16px;
-  color: rgb(253, 254, 254);
+  color: pink;
   line-height: 63px;
   cursor: pointer;
 }
@@ -48,6 +48,7 @@ h2 {
 }
 
 .profilePic {
+  margin-bottom: 4vh;
   width: 15vw;
   height: 15vw;
 }
@@ -85,8 +86,9 @@ h2 {
 }
 
 .myProfile ul li {
-  font-size: 18px;
-  margin-top: 5px;
+  width: 60vw;
+  font-size: 1.25vw;
+  margin-top: 0.3472222222222222vw;
 }
 
 .linkField {
@@ -97,7 +99,7 @@ h2 {
 }
 
 .linkSubmit {
-  width: 5vw;
+  width: 12vw;
 }
 
 .post {
@@ -181,4 +183,24 @@ p {
 
 .navLogin button:hover {
   background-color: wheat;
+}
+
+.deleteLink {
+  margin-top: 3vh;
+}
+
+.container {
+  margin-top: 2vh;
+}
+
+
+
+
+
+
+
+
+
+
+
 }

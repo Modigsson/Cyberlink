@@ -39,10 +39,10 @@ try {
   <div class="myProfile">
 
     <ul>
-      <li><?php echo $result[0]['user_username']; ?></li>
-      <li><?php echo $result[0]['user_email']; ?></li>
-      <li><?php echo $result[0]['user_description']; ?></li>
-      <li><a href="editprofile.php">Edit your profile</a></li>
+      <p><?php echo $result[0]['user_username']; ?></p>
+      <p><?php echo $result[0]['user_email']; ?></p>
+      <p><?php echo $result[0]['user_description']; ?></p>
+      <p><a href="editprofile.php">Edit your profile</a></p>
     </ul>
 
   </div>

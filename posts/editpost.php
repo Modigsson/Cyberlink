@@ -1,8 +1,8 @@
 <?php
 declare(strict_types=1);
 session_start();
-include $_SERVER["DOCUMENT_ROOT"] . "/includes//connection.php";
 include '../includes/header.php';
+include $_SERVER["DOCUMENT_ROOT"] . "/includes//connection.php";
 
 if (isset($_POST['link'], $_POST['description'])) {
   $content = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
