@@ -3,20 +3,20 @@ declare(strict_types=1);
 session_start();
 include $_SERVER["DOCUMENT_ROOT"] . "/includes//connection.php";
 include '../includes/header.php';
-// $loggedIn = $_SESSION['user_id'];
 
 if (isset($_POST['link'], $_POST['description'])) {
   $content = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
   $URL = filter_var($_POST['link'], FILTER_SANITIZE_STRING);
-
-  $statement = $pdo->prepare('UPDATE posts SET link = :link, description = :description WHERE id = :id');
+  $postID = filter_var($_POST['postID'], FILTER_SANITIZE_STRING);
+  $statement = $pdo->prepare("UPDATE posts SET link = :link, description = :description WHERE id = :id");
 try {
   $updateResult = $statement->execute(array(
     ':link' => $URL,
     ':description', $content,
+    ':id', $postID,
   ));
   // header('Location: ../feed.php');
-
+  die(var_dump($updateResult));
 } catch (PDOException $e) {
   die($e->getMessage());
   }
@@ -36,9 +36,10 @@ foreach ($posts as $post):
       <button class="deleteButton" type="submit" name="delete">Delete</button>
     </form>
     <form action="editpost.php" method="POST">
+      <input class="hidden" type="hidden" name="postID" value=<?php echo $post['id']; ?>>
       <input class="hidden" type="text" name="link" value=<?php echo $post['link']; ?>>
       <input class="hidden" type="text" name="description" value=<?php echo $post['description']; ?>>
-      <button type="submit" name="save">Save Change</button>
+      <button type="submit">Save Change</button>
     </form>
   </div>
 
